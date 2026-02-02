@@ -1,3 +1,5 @@
+-- aleny404: Arbetat enskilt
+
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Float_Text_IO; use Ada.Float_Text_IO;
 
@@ -33,14 +35,18 @@ begin
       Put("Steg: ");
       Get(Inc);
       
-      exit when Inc > 0.0;
-      
+      exit when Inc > 0.0;      
       Put_Line("Felaktigt värde!");
    end loop;
    
-   Put("Momsprocent: ");
-   Get(VAT);
-   
+   loop
+      Put("Momsprocent: ");
+      Get(VAT);
+      
+      exit when VAT >= 0.0 and VAT <= 100.0;
+      Put_Line("Felaktigt värde!");
+   end loop;
+      
    VAT := VAT / 100.0;
    
    New_Line;
@@ -48,7 +54,7 @@ begin
    Put_Line("Pris utan moms  Moms   Pris med moms");
    
    Index := First_Price;
-   while Index <= Last_Price loop
+   loop
       Index_VAT := Index * VAT;
       Index_Total := Index + Index_VAT;
       
@@ -58,5 +64,7 @@ begin
       New_Line;
       
       Index := Index + Inc;
+      -- avrundar med 2 decimaler, för att fixa float additions fel
+      exit when Float'Rounding(Index * 100.0) > Float'Rounding(Last_Price * 100.0);
    end loop;
 end Momstabell;
