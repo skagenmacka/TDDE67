@@ -121,13 +121,9 @@ procedure Program is
      return Integer
    is 
       Res: Integer := 1;
-      Index: Integer := 1;
    begin
-      loop 
-	 Res := Res * Index;
-	 
-	 exit when Index = N;
-	 Index := Index + 1;
+      for I in 1 .. N loop
+	 Res := Res * I;
       end loop;
       
       return Res;
@@ -157,14 +153,15 @@ begin
    loop
       Menu_Selection(C);
       
-      case C is
-	 when 1 => Hypothenuse_Program;
-	 when 2 => Angle_Program;
-	 when 3 => Factorial_Program;
-	 when 4 => 
-	    Put("Ha en bra dag!");
-	    exit;
-	 when others => null;
-      end case;
+      if C = 1 then
+	 Hypothenuse_Program;
+      elsif C = 2 then
+	 Angle_Program;
+      elsif C = 3 then
+	 Factorial_Program;
+      elsif C = 4 then
+	 Put("Ha en bra dag!");
+	 exit;
+      end if;
    end loop;
 end Program;
