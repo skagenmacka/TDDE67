@@ -7,7 +7,15 @@ with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
 procedure Array_Uppgift is
    type DS1_Type is array (Integer range 31 .. 35) of Float;
    
+   type DS2_Sub_Type is array (Character range '5' .. '9') of String(1 .. 5);
+   type DS2_Type is array (Boolean'Range) of DS2_Sub_Type;
+   
+   type DS3_Type is array
+     (Character range '4' .. '8', Integer range 73 .. 74) of Integer;
+   
+   -- DS1
    procedure Get(DS1 : out DS1_Type) is
+      
    begin
       for I in reverse DS1'Range loop
 	 Get(DS1(I));
@@ -15,6 +23,7 @@ procedure Array_Uppgift is
    end Get;
    
    procedure Put(DS1 : in DS1_Type) is
+      
    begin
       for I in reverse DS1'Range loop
 	 Put(DS1(I), Fore => 0, Aft => 3, Exp => 0);
@@ -25,40 +34,55 @@ procedure Array_Uppgift is
       end loop;
    end Put;
    
-   type DS2_Sub_Type is array (Character range '5' .. '9') of String(1 .. 5);
-   type DS2_Type is array (Boolean'Range) of DS2_Sub_Type;
+   -- DS2 + dens delar
+   procedure Get(DS2_Sub : out DS2_Sub_Type) is
+      C: Character;
+      Eol: Boolean;
+   begin
+      for I in reverse DS2_Sub'Range loop
+	 Get(DS2_Sub(I));
+	 Look_Ahead(C, Eol);
+	 
+	 if not Eol then
+	    Get(C);
+	 end if;
+      end loop;
+   end Get;
+   
+   procedure Put(DS2_Sub : in DS2_Sub_Type) is
+      
+   begin
+      for I in reverse DS2_Sub'Range loop
+	 Put(DS2_Sub(I));
+	 
+	 if I /= DS2_Sub'First then
+	    Put(" ");
+	 end if;
+      end loop;
+   end Put;
    
    procedure Get(DS2 : out DS2_Type) is
-      C: Character;
    begin
       for I in DS2'Range loop
-	 for J in reverse DS2(I)'Range loop
-	    Get(DS2(I)(J));
-	    
-	    if J /= DS2(I)'First or I /= DS2'Last then
-	       Get(C);
-	    end if;
-	 end loop;
+	 Get(DS2(I));
       end loop;
    end;
    
    procedure Put(DS2 : in DS2_Type) is
+      
    begin
       for I in DS2'Range loop
-	 for J in reverse DS2(I)'Range loop
-	    Put(DS2(I)(J));
-	    
-	    if J /= DS2(I)'First or I /= DS2'Last then
-	       Put(" ");
-	    end if;
-	 end loop;
+	 Put(DS2(I));
+	 
+	 if I /= DS2'Last then
+	    Put(" ");
+	 end if;
       end loop;
    end;
    
-   type DS3_Type is array
-     (Character range '4' .. '8', Integer range 73 .. 74) of Integer;
-   
+   -- DS3
    procedure Get(DS3 : out DS3_Type) is
+      
    begin
       for I in DS3'Range(2) loop
 	 for J in DS3'Range(1) loop
@@ -68,6 +92,7 @@ procedure Array_Uppgift is
    end Get;
    
    procedure Put(DS3 : in DS3_Type) is
+      
    begin
       for I in DS3'Range(2) loop
 	 for J in DS3'Range(1) loop
