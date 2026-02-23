@@ -1,0 +1,132 @@
+=======================================================================
+         Ada.O3.0 - Skapande och hantering av en datastruktur
+=======================================================================
+
+*** OBS! De krav som finns under Ada.P3 gäller även för denna uppgift.
+*** Se hemsidan för dessa krav. Vi tar inte med alla krav här för att
+*** ni skall kunna läsa dessa i lugn och ro innan P-passet.
+
+I denna uppgift skall du skapa den datastruktur som motsvarar bilden
+nedan. Det är av stor vikt att se till att datastrukturen verkligen är
+den som motsvarar bilden. Även om programmet rent funktionellt är "ok"
+kommer det inte att vara godkänt att ha en annan datastruktur.
+
+Om det finns identifierare i figuren skall dessa ha samma namn i ditt
+program.
+
+I denna uppgift kan det förekomma matriser (tvådimensionella fält),
+fält och poster. Dessa ligger antagligen inuti varandra och det är då
+viktigt att du visar att du kan skapa dessa datatyper på ett korrekt
+sätt.
+
+De data som matas in i körexemplet finns i bilden av datastrukturen
+och det är alltså meningen att de data som matas in skall hamna på de
+positioner i datastrukturen som visas.
+
+Ditt program skall alltså läsa in data från tangentbordet och lagra
+dessa data i datastrukturen för att sen skriva ut dessa data ifrån
+datastrukturen (d.v.s. inte samtidigt som datat läses in eller från
+andra variabler etc.).
+
+Inläsningen av själva datat (inte ledtexten) skall ske inuti ett
+underprogram som heter "Get" med endast en parameter (den aktuella
+datastrukturen).
+
+Utskriften av själva datat (inte ledtexten) skall ske i underprogramet
+"Put" med endast en parameter (den aktuella datastrukturen).
+
+OBS! Du får förstås inte använda dig av sidoeffekter (användande av
+globala data/variabler) i underprogrammen utan att skicka med dessa
+som parametrar. Det är alltid ok att ha konstanter global och använda
+dem överallt (även i underprogrammen). Det är detta just dessa är till
+för.
+
+Det är helt ok att skapa fler underprogram än detta. Huvudprogrammet
+skall dock endast anropa de två beskrivna ovan.
+
+
+=======================================================================
+Datastruktur att implementera:
+=======================================================================
+
+   ┌────────────────────────────────────────────────┐
+   │    ┌────────────────────┬────────────────────┐ │
+T: │    │     ┌────────────┐ │     ┌────────────┐ │ │
+   │    │ -81 │   ┌─────┐  │ │ -81 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'c' │  │ │     │ C │ '1' │  │ │ │
+   │    │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "VY" │ │ │     │ S │ "1X" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     ├────────────┤ │     ├────────────┤ │ │
+   │    │ -80 │   ┌─────┐  │ │ -80 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'y' │  │ │     │ C │ 'l' │  │ │ │
+   │ 27 │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "Lu" │ │ │     │ S │ "8y" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     ├────────────┤ │     ├────────────┤ │ │
+   │    │ -79 │   ┌─────┐  │ │ -79 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'V' │  │ │     │ C │ '3' │  │ │ │
+   │    │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "mF" │ │ │     │ S │ "7y" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     └────────────┘ │     └────────────┘ │ │
+   │    ├────────────────────┼────────────────────┤ │
+   │    │     ┌────────────┐ │     ┌────────────┐ │ │
+   │    │ -81 │   ┌─────┐  │ │ -81 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'g' │  │ │     │ C │ 'l' │  │ │ │
+   │    │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "gU" │ │ │     │ S │ "A6" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     ├────────────┤ │     ├────────────┤ │ │
+   │    │ -80 │   ┌─────┐  │ │ -80 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'n' │  │ │     │ C │ '2' │  │ │ │
+   │ 28 │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "nk" │ │ │     │ S │ "HD" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     ├────────────┤ │     ├────────────┤ │ │
+   │    │ -79 │   ┌─────┐  │ │ -79 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'd' │  │ │     │ C │ 'o' │  │ │ │
+   │    │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "p8" │ │ │     │ S │ "oH" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     └────────────┘ │     └────────────┘ │ │
+   │    ├────────────────────┼────────────────────┤ │
+   │    │     ┌────────────┐ │     ┌────────────┐ │ │
+   │    │ -81 │   ┌─────┐  │ │ -81 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'Z' │  │ │     │ C │ 'V' │  │ │ │
+   │    │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "Bn" │ │ │     │ S │ "cR" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     ├────────────┤ │     ├────────────┤ │ │
+   │    │ -80 │   ┌─────┐  │ │ -80 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'C' │  │ │     │ C │ 'g' │  │ │ │
+   │ 29 │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "3X" │ │ │     │ S │ "WR" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     ├────────────┤ │     ├────────────┤ │ │
+   │    │ -79 │   ┌─────┐  │ │ -79 │   ┌─────┐  │ │ │
+   │    │     │ C │ 'U' │  │ │     │ C │ 'W' │  │ │ │
+   │    │     │   └─────┘  │ │     │   └─────┘  │ │ │
+   │    │     │   ┌──────┐ │ │     │   ┌──────┐ │ │ │
+   │    │     │ S │ "bO" │ │ │     │ S │ "Bu" │ │ │ │
+   │    │     │   └──────┘ │ │     │   └──────┘ │ │ │
+   │    │     └────────────┘ │     └────────────┘ │ │
+   │    └────────────────────┴────────────────────┘ │
+   │             False                True          │
+   └────────────────────────────────────────────────┘
+
+
+=======================================================================
+Körexempel:
+=======================================================================
+Mata in datamängd: 1 1X l 8y 3 7y l A6 2 HD o oH V cR g WR W Bu c VY y Lu V mF g gU n nk d p8 Z Bn C 3X U bO
+Inmatad datamängd: U bO C 3X Z Bn d p8 n nk g gU V mF y Lu c VY W Bu g WR V cR o oH 2 HD l A6 3 7y l 8y 1 1X
+=======================================================================
