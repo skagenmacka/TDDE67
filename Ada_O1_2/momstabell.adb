@@ -12,10 +12,13 @@ procedure Momstabell is
    Index: Float;
    Index_VAT: Float;
    Index_Total: Float;
+   
+   N: Integer;
 begin
    loop 
       Put("Första pris: ");
       Get(First_Price);
+      Skip_Line;
       
       exit when First_Price >= 0.0;
       
@@ -25,6 +28,7 @@ begin
    loop
       Put("Sista pris: ");
       Get(Last_Price);
+      Skip_Line;
       
       exit when Last_Price >= First_Price;
       
@@ -34,6 +38,7 @@ begin
    loop
       Put("Steg: ");
       Get(Inc);
+      Skip_Line;
       
       exit when Inc > 0.0;      
       Put_Line("Felaktigt värde!");
@@ -42,6 +47,7 @@ begin
    loop
       Put("Momsprocent: ");
       Get(VAT);
+      Skip_Line;
       
       exit when VAT >= 0.0 and VAT <= 100.0;
       Put_Line("Felaktigt värde!");
@@ -54,7 +60,10 @@ begin
    Put_Line("Pris utan moms  Moms   Pris med moms");
    
    Index := First_Price;
-   loop
+   
+   N := Integer(Float'Floor((Last_Price - First_Price) / Inc));
+   
+   for I in 0 .. N loop
       Index_VAT := Index * VAT;
       Index_Total := Index + Index_VAT;
       
@@ -64,7 +73,5 @@ begin
       New_Line;
       
       Index := Index + Inc;
-      -- avrundar med 2 decimaler, för att fixa float additions fel
-      exit when Float'Rounding(Index * 100.0) > Float'Rounding(Last_Price * 100.0);
    end loop;
 end Momstabell;

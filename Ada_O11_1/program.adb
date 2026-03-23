@@ -1,4 +1,5 @@
--- aleny404: Arbetat enskilt
+-- aleny404: samarbetat med alvol243, Alvin Olsson, samma program
+-- aleny404: samarbetat med danpl327, Daniils Platkovs, samma program
 
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
@@ -11,7 +12,7 @@ use Ada.Numerics.Elementary_Functions;
 procedure Program is
    C: Integer;
    
-   procedure Menu_Selection 
+   procedure Menu_Selection
      (Selection : out Integer)
    is
    begin
@@ -150,6 +151,7 @@ procedure Program is
    
 begin
    Put_Line("Välkommen till miniräknaren!");
+   
    loop
       Menu_Selection(C);
       
